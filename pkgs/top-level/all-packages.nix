@@ -1167,6 +1167,12 @@ let
 
   iasl = callPackage ../development/compilers/iasl { };
 
+  ibus-cangjie = callPackage ../tools/inputmethods/ibus-cangjie {
+    python = python3;
+    pygobject3 = python3Packages.pygobject3;
+    ibus = ibus_py3;
+  };
+
   icecast = callPackage ../servers/icecast { };
 
   icoutils = callPackage ../tools/graphics/icoutils { };
@@ -3627,6 +3633,9 @@ let
   hyenae = callPackage ../tools/networking/hyenae { };
 
   ibus = callPackage ../development/libraries/ibus { };
+  ibus_py3 = callPackage ../development/libraries/ibus {
+    python = python3;
+  };
 
   iconnamingutils = callPackage ../development/tools/misc/icon-naming-utils {
     inherit (perlPackages) XMLSimple;
