@@ -49,6 +49,7 @@
   ./programs/bash/command-not-found.nix
   ./programs/blcr.nix
   ./programs/environment.nix
+  ./programs/ibus.nix
   ./programs/info.nix
   ./programs/shadow.nix
   ./programs/shell.nix

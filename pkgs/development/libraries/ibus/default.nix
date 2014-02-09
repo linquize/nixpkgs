@@ -3,11 +3,11 @@
 
 stdenv.mkDerivation rec {
   name = "ibus-${version}";
-  version = "1.5.5";
+  version = "1.5.7";
 
   src = fetchurl {
-    url = "http://ibus.googlecode.com/files/${name}.tar.gz";
-    sha256 = "1v4a9xv2k26g6ggk4282ynfvh68j2r5hg1cdpvnryfa8c2pkdaq2";
+    url = "https://github.com/ibus/ibus/releases/download/${version}/${name}.tar.gz";
+    sha256 = "0grl85skixmcvgmzp76z7ll3jkwyrivkqv25fagl8fhb6hw53hwl";
   };
 
   configureFlags = "--disable-gconf --enable-dconf --disable-memconf --enable-ui --enable-python-library";
@@ -27,7 +27,8 @@ stdenv.mkDerivation rec {
                        --prefix PYTHONPATH : "$(toPythonPath ${pygobject3})" \
                        --prefix LD_LIBRARY_PATH : "${gnome3.gtk3}/lib:${atk}/lib:$out/lib" \
                        --prefix GI_TYPELIB_PATH : "$GI_TYPELIB_PATH:$out/lib/girepository-1.0" \
-                       --prefix GIO_EXTRA_MODULES : "${gnome3.dconf}/lib/gio/modules"
+                       --prefix GIO_EXTRA_MODULES : "${gnome3.dconf}/lib/gio/modules" \
+                       --prefix IBUS_COMPONENT_PATH : "/run/current-system/sw/share/ibus/component"
     done
   '';
 
