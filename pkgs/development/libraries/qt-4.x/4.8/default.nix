@@ -49,16 +49,8 @@ stdenv.mkDerivation rec {
 
   patches =
     [ ./glib-2.32.patch
-      (fetchurl {
-        name = "CVE-2013-4549.patch";
-        url = "https://projects.archlinux.org/svntogit/packages.git/plain/trunk/CVE-2013-4549.patch?h=packages/qt4";
-        sha256 = "0xz60fmspzvsyhd0f013pvh2bbm87976128fphbckfcwiqr1hanw";
-      })
-      (fetchurl {
-        name = "libmng2.patch";
-        url = "https://projects.archlinux.org/svntogit/packages.git/plain/trunk/libmng2.patch?h=packages/qt4";
-        sha256 = "1sgnrl3qzr370ad5bqc66f7sp0gk046jnsy1811x24f16cs04xzh";
-      })
+      ./CVE-2013-4549.patch
+      ./libmng2.patch
       (substituteAll {
         src = ./dlopen-absolute-paths.diff;
         inherit cups icu libXfixes;
