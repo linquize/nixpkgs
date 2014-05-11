@@ -6203,6 +6203,8 @@ let
 
   javasvn = callPackage ../development/libraries/java/javasvn { };
 
+  jaxws = callPackage ../development/libraries/java/jaxws { };
+
   jclasslib = callPackage ../development/tools/java/jclasslib { };
 
   jdom = callPackage ../development/libraries/java/jdom { };
