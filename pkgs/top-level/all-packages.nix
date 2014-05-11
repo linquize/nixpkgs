@@ -6241,6 +6241,8 @@ let
     inherit (pythonPackages) gyp;
   };
 
+  xdoclet = callPackage ../development/libraries/java/xdoclet { };
+
   xmlsec = callPackage ../development/libraries/xmlsec { };
 
   zziplib = callPackage ../development/libraries/zziplib { };
