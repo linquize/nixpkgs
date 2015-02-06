@@ -4240,6 +4240,9 @@ let
 
   clooj = callPackage ../development/interpreters/clojure/clooj.nix { };
 
+  coreclr = callPackage ../development/interpreters/coreclr {    
+  };
+
   erlangR14 = callPackage ../development/interpreters/erlang/R14.nix { };
   erlangR15 = callPackage ../development/interpreters/erlang/R15.nix { };
   erlangR16 = callPackage ../development/interpreters/erlang/R16.nix { };
