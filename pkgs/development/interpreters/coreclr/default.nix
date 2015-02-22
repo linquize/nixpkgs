@@ -14,6 +14,8 @@ clangStdenv.mkDerivation rec {
   COMPILER_ROOT = "${gcc48_unwrap}/lib";
   COMPILER_LIB = "${COMPILER_ROOT}/gcc/x86_64-unknown-linux-gnu/4.8.4";
   COMPILER_PATH = "${glibc}/lib:${COMPILER_LIB}";
+  CFLAGS = "-I${glibc}/include";
+  CXXFLAGS = "-v -I${glibc}/include -I${gcc48_unwrap}/include/c++/4.8.4";
   LDFLAGS = "-v -L${COMPILER_ROOT} -L${COMPILER_LIB}";
 
   dontUseCmakeConfigure = true;
