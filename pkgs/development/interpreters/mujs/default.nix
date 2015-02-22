@@ -1,6 +1,6 @@
-{ stdenv, fetchgit, clang }:
+{ clangStdenv, fetchgit, gcc48_unwrap }:
 
-stdenv.mkDerivation rec {
+clangStdenv.mkDerivation rec {
   name = "mujs-2015-01-22";
 
   src = fetchgit {
@@ -9,14 +9,18 @@ stdenv.mkDerivation rec {
     sha256 = "1713h82zzd189nb54ilpa8fj9xhinhn0jvmd3li4c2fwh6xfjpcy";
   };
 
-  buildInputs = [ clang ];
+  buildInputs = [ ];
+
+  COMPILER_ROOT = "${gcc48_unwrap}/lib";
+  COMPILER_PATH = "${COMPILER_ROOT}/gcc/x86_64-unknown-linux-gnu/4.8.4";
+  LDFLAGS = " -L${COMPILER_ROOT} -L${COMPILER_PATH}";
 
   makeFlags = [ "prefix=$(out)" ];
 
-  meta = with stdenv.lib; {
+  meta = with clangStdenv.lib; {
     homepage = http://mujs.com/;
     description = "A lightweight, embeddable Javascript interpreter";
-    platforms = stdenv.lib.platforms.linux;
+    platforms = clangStdenv.lib.platforms.linux;
     maintainers = with maintainers; [ pSub ];
     license = licenses.gpl3;
   };
