@@ -1,6 +1,6 @@
-{ clangStdenv, clangWrapper, fetchgit, which, bash, cmake }:
+{ clangStdenv, fetchgit, which, bash, cmake, gcc48_unwrap, glibc }:
 
-clangStdenv.mkDerivation {
+clangStdenv.mkDerivation rec {
   name = "coreclr-master";
   src = fetchgit {
     #url = https://github.com/dotnet/coreclr.git;
@@ -9,7 +9,12 @@ clangStdenv.mkDerivation {
     sha256 = "0am2qh4mqlwda70y540pfr2gkjiaccq9wsjlpp4gcgr4yxasqmrr";
   };
 
-  buildInputs = [ clangWrapper which bash cmake ];
+  buildInputs = [ which bash cmake ];
+
+  COMPILER_ROOT = "${gcc48_unwrap}/lib";
+  COMPILER_LIB = "${COMPILER_ROOT}/gcc/x86_64-unknown-linux-gnu/4.8.4";
+  COMPILER_PATH = "${glibc}/lib:${COMPILER_LIB}";
+  LDFLAGS = "-v -L${COMPILER_ROOT} -L${COMPILER_LIB}";
 
   dontUseCmakeConfigure = true;
 
